@@ -13,4 +13,4 @@ set scrolloff=8
 set signcolumn=yes
 set cmdheight=2
 set updatetime=50
-set colorcolumn=80
+" set colorcolumn=80
