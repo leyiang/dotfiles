@@ -48,6 +48,10 @@ return packer.startup(function(use)
         ft = { "md", "markdown" },
     }
 
+    -- Color Theme
+    use "jacoborus/tender.vim"
+    use "folke/tokyonight.nvim"
+
     if PACKER_BOOTSTRAP then
         require("packer").sync()
     end

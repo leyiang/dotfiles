@@ -6,6 +6,7 @@ local options = {
     hlsearch = false,
     pumheight = 10,
     smartindent = true,
+    termguicolors = true,
     splitbelow = true,
     splitright = true,
     expandtab = true,
