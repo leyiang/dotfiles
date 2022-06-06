@@ -112,3 +112,4 @@ alias .git="cd ${DOT_FOLDER}/git";
 alias .zsh="cd ${DOT_FOLDER}/zsh";
 alias .lt="cd ${CODE_FOLDER}/leetcode";
 alias .plugin="cd ${NVIM_PLUGIN_FOLDER}"
+alias .dot="cd ${DOT_FOLDER}";
