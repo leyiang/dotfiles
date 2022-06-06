@@ -100,8 +100,9 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export DOT_FOLDER="~/Work/dotfiles";
-export CODE_FOLDER="~/Work/code/";
+export WORK_FOLDER="~/Work";
+export DOT_FOLDER="${WORK_FOLDER}/dotfiles";
+export CODE_FOLDER="${WORK_FOLDER}/code/";
 export NVIM_PLUGIN_FOLDER="~/.local/share/nvim/";
 
 export XM3_MAC="94:DB:56:85:7C:BD"
@@ -113,3 +114,4 @@ alias .zsh="cd ${DOT_FOLDER}/zsh";
 alias .lt="cd ${CODE_FOLDER}/leetcode";
 alias .plugin="cd ${NVIM_PLUGIN_FOLDER}"
 alias .dot="cd ${DOT_FOLDER}";
+alias .work="cd ${WORK_FOLDER}";
