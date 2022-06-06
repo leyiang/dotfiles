@@ -1,6 +1,7 @@
 local scripts = {
     "options",
-    "keymaps"
+    "keymaps",
+    "plugins"
 }
 
 for k, script in pairs(scripts) do
