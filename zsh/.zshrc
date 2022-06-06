@@ -99,9 +99,16 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias .nvim="cd ~/.dotfiles/nvim/.config/nvim";
-alias .git="cd ~/.dotfiles/git";
-alias .zsh="cd ~/.dotfiles/zsh";
-alias .lt="cd ~/code/leetcode";
 
+export DOT_FOLDER="~/Work/dotfiles";
+export CODE_FOLDER="~/Work/code/";
+export NVIM_PLUGIN_FOLDER="~/.local/share/nvim/";
 
+export XM3_MAC="94:DB:56:85:7C:BD"
+
+# Custom Alias
+alias .nvim="cd ${DOT_FOLDER}/nvim/.config/nvim";
+alias .git="cd ${DOT_FOLDER}/git";
+alias .zsh="cd ${DOT_FOLDER}/zsh";
+alias .lt="cd ${CODE_FOLDER}/leetcode";
+alias .plugin="cd ${NVIM_PLUGIN_FOLDER}"
