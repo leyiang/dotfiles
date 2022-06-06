@@ -191,8 +191,3 @@ bar {
 # bindsym XF86MonBrightnessDown exec --no-startup-id "xbacklight -dec 10; notify-send 'brightness down'"
 
 exec nitrogen --restore
-
-# Gaps
-for_window [class="^.*"] border pixel 2
-gap inner 5
-
