@@ -24,8 +24,8 @@ local keymaps = {
         { "<C-Right>", ":vertical resize +2<cr>" },
         { "<S-l>", ":bnext<cr>" },
         { "<S-h>", ":bprevious<cr>" },
-        { "<A-j>", ":m .+1<cr>=="},
-        { "<A-k>", ":m .-2<cr>=="},
+        -- { "<A-j>", ":m .+1<cr>=="},
+        -- { "<A-k>", ":m .-2<cr>=="},
     },
     v = {
         { "<", "<gv" },
