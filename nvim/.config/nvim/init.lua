@@ -3,6 +3,8 @@ local scripts = {
     "keymaps",
     "plugins",
     "color",
+    "cmp",
+    "lsp"
 }
 
 for k, script in pairs(scripts) do
@@ -13,3 +15,5 @@ for k, script in pairs(scripts) do
         return
     end
 end
+
+
