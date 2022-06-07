@@ -196,7 +196,14 @@ mode "resize" {
 # finds out, if available)
 bar {
     position top
-    status_command i3status
+    # status_command i3status
+    status_command /home/yiang/.local/bin/bumblebee-status \
+        -t solarized \
+        -m time date memory hostname battery
+
+    tray_padding 0
+    separator_symbol "---"
+    font pango:nerd 10
 }
 
 # assign [class="google-chrome"] 2
