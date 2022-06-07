@@ -187,7 +187,7 @@ bar {
 
 # assign [class="google-chrome"] 2
 
-# bindsym XF86MonBrightnessUp exec --no-startup-id "xbacklight -inc 10; notify-send 'brightness up'"
-# bindsym XF86MonBrightnessDown exec --no-startup-id "xbacklight -dec 10; notify-send 'brightness down'"
+bindsym XF86MonBrightnessUp exec --no-startup-id "bright.sh +"
+bindsym XF86MonBrightnessDown exec --no-startup-id "bright.sh -"
 
 exec nitrogen --restore
