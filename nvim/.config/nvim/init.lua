@@ -4,16 +4,20 @@ local scripts = {
     "plugins",
     "color",
     "cmp",
-    "lsp"
+    "lsp",
+    "telescope",
+    "treesitter",
+    "autopairs",
+    "comment",
+    "nvim-tree",
 }
 
 for k, script in pairs(scripts) do
-    local status_ok, _ = pcall(require, "user." .. script)
+    require("user." .. script)
+    -- local status_ok, _ = pcall(require, "user." .. script)
 
-    if not status_ok then
-        vim.notify("Option Script: " .. script .. " not found")
-        return
-    end
+    -- if not status_ok then
+    --     vim.notify("Option Script: " .. script .. " not found")
+    --     return
+    -- end
 end
-
-

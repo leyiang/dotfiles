@@ -13,11 +13,12 @@ vim.g.maplocalleader = leader
 local keymaps = {
     -- Normal Mode --
     n = {
+        { "<C-e>", ":e#<cr>" },
         { "<C-h>", "<C-w>h" },
         { "<C-l>", "<C-w>l" },
         { "<C-j>", "<C-w>j" },
         { "<C-k>", "<C-w>k" },
-        { "<leader>e", ":Lex 30<cr>" },
+        -- { "<leader>e", ":Lex 30<cr>" },
         { "<C-Up>", ":resize -2<cr>" },
         { "<C-Down>", ":resize +2<cr>" },
         { "<C-Left>", ":vertical resize -2<cr>" },
@@ -26,6 +27,14 @@ local keymaps = {
         { "<S-h>", ":bprevious<cr>" },
         -- { "<A-j>", ":m .+1<cr>=="},
         -- { "<A-k>", ":m .-2<cr>=="},
+        -- Telescope
+        {
+            "<leader>f",
+            "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>"
+        },
+        { "<leader>t", "<cmd>Telescope live_grep<cr>" },
+        { "<leader>/", "<cmd>lua require('Comment').toggle()<CR>" },
+        { "<leader>e", ":NvimTreeToggle<cr>" }
     },
     v = {
         { "<", "<gv" },

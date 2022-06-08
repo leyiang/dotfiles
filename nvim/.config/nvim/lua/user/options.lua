@@ -2,6 +2,7 @@
 local options = {
     backup = false,
     cmdheight = 2,
+    autoindent = true,
     fileencoding = 'utf-8',
     hlsearch = false,
     pumheight = 10,
@@ -18,7 +19,8 @@ local options = {
     relativenumber = true,
     wrap = false,
     signcolumn = 'yes',
-    scrolloff = 8
+    scrolloff = 8,
+    list = true
 }
 
 for k, v in pairs(options) do

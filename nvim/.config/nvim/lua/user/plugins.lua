@@ -65,13 +65,32 @@ return packer.startup(function(use)
     use "rafamadriz/friendly-snippets"
 
     -- Auto Pair
-    use "jiangmiao/auto-pairs"
+    -- use "jiangmiao/auto-pairs"
+    use "windwp/nvim-autopairs"
 
     -- LSP
     use "neovim/nvim-lspconfig"
     use "williamboman/nvim-lsp-installer"
     use "tamago324/nlsp-settings.nvim"
-    
+
+    -- Telescope
+    use "nvim-telescope/telescope.nvim"
+    use "nvim-telescope/telescope-media-files.nvim"
+
+    -- Treesitter
+    use {
+        "nvim-treesitter/nvim-treesitter",
+        run = ":TSUpdate"
+    }
+
+    -- Comment
+    use "numToStr/Comment.nvim"
+    use "JoosepAlviste/nvim-ts-context-commentstring"
+
+    -- Nvim Tree
+    use "kyazdani42/nvim-web-devicons"
+    use "kyazdani42/nvim-tree.lua"
+
     if PACKER_BOOTSTRAP then
         require("packer").sync()
     end
