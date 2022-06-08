@@ -115,6 +115,7 @@ alias .lt="cd ${CODE_FOLDER}/leetcode";
 alias .plugin="cd ${NVIM_PLUGIN_FOLDER}"
 alias .dot="cd ${DOT_FOLDER}";
 alias .work="cd ${WORK_FOLDER}";
+alias .todo="cd ${WORK_FOLDER}/todo";
 
 
 export http_proxy="http://127.0.0.1:7890"
