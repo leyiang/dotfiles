@@ -10,6 +10,7 @@ local scripts = {
     "autopairs",
     "comment",
     "nvim-tree",
+    "snippets",
 }
 
 for k, script in pairs(scripts) do

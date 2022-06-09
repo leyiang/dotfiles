@@ -72,8 +72,6 @@ cmp.setup({
                     feedKey("<CR>", "")
                 elseif luasnip.expandable() then
                     luasnip.expand()
-                elseif luasnip.expand_or_jumpable() then
-                    luasnip.expand_or_jump()
                 elseif check_backspace() then
                     fallback()
                 else
@@ -98,10 +96,10 @@ cmp.setup({
         end
     },
     sources = {
-        { name = "nvim_lsp" },
-        { name = "buffer" },
         { name = "luasnip" },
+        { name = "nvim_lsp" },
         { name = "path" },
+        { name = "buffer" },
     },
     window = {
         completion = {
