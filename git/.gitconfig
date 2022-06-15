@@ -1,3 +1,5 @@
 [user]
 	email = yiangforwork@gmail.com
 	name = Yiang
+[core]
+	editor = vim
