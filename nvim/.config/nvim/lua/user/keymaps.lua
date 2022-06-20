@@ -39,6 +39,7 @@ local keymaps = {
     v = {
         { "<", "<gv" },
         { ">", ">gv" },
+        {"<leader>a", ":w !xclip -i -sel c<CR><CR>"},
 
         -- :m .+1 -- Move one line downward
         -- == -- double equal sign re-indent the line.
