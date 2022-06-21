@@ -116,6 +116,7 @@ alias .plugin="cd ${NVIM_PLUGIN_FOLDER}"
 alias .dot="cd ${DOT_FOLDER}";
 alias .work="cd ${WORK_FOLDER}";
 alias .todo="cd ${WORK_FOLDER}/todo";
+alias .blog="cd ${WORK_FOLDER}/leyiang.github.io/"
 
 
 export http_proxy="http://127.0.0.1:7890"
