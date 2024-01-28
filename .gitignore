@@ -1,0 +1,5 @@
+nvim/.config/nvim/plugin
+.compiled
+
+.zshrc_extra
+.zshrc_third_party

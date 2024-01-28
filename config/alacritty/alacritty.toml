@@ -1,0 +1,26 @@
+import = ["/home/yiang/.config/alacritty/theme.toml"]
+
+[font]
+size = 14.0
+
+[font.normal]
+#family = "mono"
+family = "Hack Nerd Font"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "Insert"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "Insert"
+mods = "Shift"
+
+[window]
+dynamic_title = true
+opacity = 1
+
+[window.padding]
+x = 5
+y = 5

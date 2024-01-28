@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+
+import os
+import sys
+
+files_to_remove = [
+    "~/.config/i3",
+    "~/.config/alacritty",
+    "~/.config/zathura",
+    "~/.config/nvim",
+    "~/.Xresources",
+    "~/.gitconfig",
+    "~/.profile",
+    "~/.zshenv",
+    "~/.zshrc"
+]
+
+# Print the list of files to remove
+print("Files to be removed:")
+for file_path in files_to_remove:
+    print(file_path)
+
+# Ask user if they want to continue with the deletion
+print('') # gap line
+user_choice = input("Do you want to proceed with the deletion? (y/N): ")
+
+if user_choice.lower() == "y":
+    for file_path in files_to_remove:
+        os.remove( os.path.expanduser(file_path) )
+        print(f"Deleted: {file_path}")
+else:
+    print("Deletion canceled.")

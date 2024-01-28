@@ -1,0 +1,41 @@
+#!/usr/bin/env python3
+
+import os
+import shutil
+
+# Get the directory path of the current script file
+script_directory = os.path.dirname(os.path.abspath(__file__))
+
+# Specify the source and destination paths
+source_folder = os.path.join(script_directory, 'config')
+destination_folder = os.path.join(script_directory, '.compiled')
+
+# Remove '.compiled' folder if exists 
+if os.path.exists(destination_folder):
+    shutil.rmtree(destination_folder)
+    print(f"Folder '{destination_folder}' removed.")
+
+# Iterate over the subfolders in the source directory
+for item in os.scandir(source_folder):
+    if item.is_dir():
+        # Create the corresponding destination folder path
+        new_dest_path = os.path.join(destination_folder, item.name, '.config', item.name)
+
+        # Copy all files and subdirectories from source to destination
+        shutil.copytree(item.path, new_dest_path)
+
+# For home files
+shutil.copytree(os.path.join(script_directory, "home"), os.path.join(destination_folder, "home"))
+
+# Install
+
+## Get Folders under .compiled
+STOW_FOLDERS = []
+for item in os.scandir(destination_folder):
+    if item.is_dir():
+        STOW_FOLDERS.append(item.name)
+
+os.chdir(destination_folder)
+for folder in STOW_FOLDERS:
+    os.system(f"stow -Dt ~ {folder}")
+    os.system(f"stow -t ~ {folder}")
