@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+# This script aims to remove all the links
+# After use this script, use sync to create all the links
+
 import os
 import sys
 
@@ -12,7 +15,9 @@ files_to_remove = [
     "~/.gitconfig",
     "~/.profile",
     "~/.zshenv",
-    "~/.zshrc"
+    "~/.zshrc",
+    "~/.zshrc_extra",
+    "~/.zshrc_third_party",
 ]
 
 # Print the list of files to remove
