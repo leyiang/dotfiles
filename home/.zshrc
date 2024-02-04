@@ -134,38 +134,6 @@ alias pip="pip3"
 # Use vi motion in zsh
 bindkey -v
 
-# pnpm
-export PNPM_HOME="/home/yiang/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-# pnpm end
-
-if [ -f $HOME/.zsh_local ]; then
-    source $HOME/.zsh_local
-fi
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/yiang/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/yiang/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/yiang/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/yiang/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-if command -v pyenv 1>/dev/null 2>&1; then
- eval "$(pyenv init -)"
-fi
-
+source ~/.zsh_third_party
+source ~/.zsh_extra
 
