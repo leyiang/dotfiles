@@ -18,6 +18,7 @@ files_to_remove = [
     "~/.zshrc",
     "~/.zshrc_extra",
     "~/.zshrc_third_party",
+    "~/.imwheelrc",
 ]
 
 # Print the list of files to remove

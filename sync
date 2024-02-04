@@ -15,17 +15,22 @@ if os.path.exists(destination_folder):
     shutil.rmtree(destination_folder)
     print(f"Folder '{destination_folder}' removed.")
 
+os.makedirs( destination_folder )
+
 # Iterate over the subfolders in the source directory
 for item in os.scandir(source_folder):
     if item.is_dir():
         # Create the corresponding destination folder path
-        new_dest_path = os.path.join(destination_folder, item.name, '.config', item.name)
+        new_dest_path = os.path.join(destination_folder, item.name, '.config')
+        os.makedirs( new_dest_path )
 
+        new_dest_path = os.path.join(destination_folder, item.name, '.config', item.name)
         # Copy all files and subdirectories from source to destination
-        shutil.copytree(item.path, new_dest_path)
+        os.symlink(item.path, new_dest_path)
+        #shutil.copytree(item.path, new_dest_path, True)
 
 # For home files
-shutil.copytree(os.path.join(script_directory, "home"), os.path.join(destination_folder, "home"))
+os.symlink(os.path.join(script_directory, "home"), os.path.join(destination_folder, "home"))
 
 # Install
 
