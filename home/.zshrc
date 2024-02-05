@@ -133,7 +133,11 @@ alias pip="pip3"
 
 # Use vi motion in zsh
 bindkey -v
+# Set Reverse Search
+bindkey '^R' history-incremental-search-backward
 
 source ~/.zshrc_third_party
 source ~/.zshrc_extra
+
+
 
