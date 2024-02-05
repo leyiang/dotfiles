@@ -134,6 +134,6 @@ alias pip="pip3"
 # Use vi motion in zsh
 bindkey -v
 
-source ~/.zsh_third_party
-source ~/.zsh_extra
+source ~/.zshrc_third_party
+source ~/.zshrc_extra
 
