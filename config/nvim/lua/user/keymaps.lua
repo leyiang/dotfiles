@@ -18,7 +18,9 @@ local keymaps = {
         { "<C-l>", "<C-w>l" },
         { "<C-j>", "<C-w>j" },
         { "<C-k>", "<C-w>k" },
-	{ "<F8>", ":w <CR> :!gcc % && ./a.out <CR>"},
+	    { "<F8>", ":w <CR> :!gcc % && ./a.out <CR>"},
+	    { "<F5>", ":w <CR> :!python %<CR>"},
+	    { "<F6>", ":w <CR> :ter python %<CR>"},
         -- { "<leader>e", ":Lex 30<cr>" },
         { "<C-Up>", ":resize -2<cr>" },
         { "<C-Down>", ":resize +2<cr>" },
@@ -36,7 +38,11 @@ local keymaps = {
         { "<leader>t", "<cmd>Telescope live_grep<cr>" },
         { "<leader>/", "<cmd>lua require('Comment').toggle()<CR>" },
         { "<leader>i", ":Pimg<cr>" },
-        { "<leader>e", ":NvimTreeToggle<cr>" }
+        { "<leader>e", ":NvimTreeToggle<cr>" },
+        { "<leader>q<CR>", ":q! <CR>" },
+        { "<leader>w<CR>", ":w <CR>" },
+        { "<leader>wq", ":wq <CR>" },
+        { "yp", ":!echo %:p | xclip -selection clipboard <CR><CR>" },
     },
     v = {
         { "<", "<gv" },
