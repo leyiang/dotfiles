@@ -12,6 +12,8 @@ local scripts = {
     "comment",
     -- "snippets",
     "clip-image-config",
+
+    "chinese-char-navigator",
 }
 
 for k, script in pairs(scripts) do
@@ -25,3 +27,5 @@ for k, script in pairs(scripts) do
 end
 
 vim.g.loaded_matchparen = false
+vim.o.termguicolors = true
+-- vim.cmd "colorscheme default"
