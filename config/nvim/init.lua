@@ -1,19 +1,22 @@
 local scripts = {
-    "options",
-    "keymaps",
-    "plugins",
+    "options", -- vim设置, vimrc的东西放这
+    "keymaps", -- vim按键映射
+    "plugins", -- 安装的插件
+
+    "clip-image-config",
+    "nvim-tree", -- 文件选择
+    "telescope", -- 快速跳转文件
+
+    "comment", -- 快速注释
+    "chinese-char-navigator", -- 中文首字母跳转
+    "toggle-val", -- 快速切换 true-false, 等状态
+
     -- "color",
     -- "cmp",
     -- "lsp",
-    "nvim-tree",
-    "telescope",
     -- "treesitter",
     -- "autopairs",
-    "comment",
     -- "snippets",
-    "clip-image-config",
-
-    "chinese-char-navigator",
 }
 
 for k, script in pairs(scripts) do
