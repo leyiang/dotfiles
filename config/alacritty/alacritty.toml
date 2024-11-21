@@ -7,6 +7,9 @@ size = 14.0
 #family = "mono"
 family = "Hack Nerd Font"
 
+[env]
+term = "xterm-256color"
+
 [[keyboard.bindings]]
 action = "Copy"
 key = "Insert"
@@ -16,6 +19,11 @@ mods = "Control"
 action = "Paste"
 key = "Insert"
 mods = "Shift"
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Control"
+command = "alacritty"
 
 [window]
 dynamic_title = true
