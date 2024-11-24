@@ -39,10 +39,17 @@ local keymaps = {
         { "<leader>/", "<cmd>lua require('Comment').toggle()<CR>" },
         { "<leader>i", ":Pimg<cr>" },
         { "<leader>e", ":NvimTreeToggle<cr>" },
-        { "<leader>q<CR>", ":q! <CR>" },
+        { "<leader>q<CR>", ":qa! <CR>" },
         { "<leader>w<CR>", ":w <CR>" },
-        { "<leader>wq", ":wq <CR>" },
-        { "yp", ":!echo %:p | xclip -selection clipboard <CR><CR>" },
+        { "<leader>wq", ":wqa <CR>" },
+        { "<leader>yp", ":!echo %:p | xclip -selection clipboard <CR><CR>" },
+        { "<leader>sub", ":! subl %:p<CR>" },
+        { "<leader>t", ":ToggleBool<CR>" },
+        { "<leader>lg", "<cmd>LazyGit<CR>" },
+        { "<leader>ng", "<cmd>Neogen<CR>" },
+    },
+    i = {
+        {"<F3>", '<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>'}
     },
     v = {
         { "<", "<gv" },
@@ -56,6 +63,10 @@ local keymaps = {
         { "<A-j>", ":m .+2<cr>==gv"},
         { "<A-k>", ":m .-2<cr>==gv"},
         { "p", '"_dP' },
+
+        { "<leader>q<CR>", ":qa! <CR>" },
+        { "<leader>w<CR>", ":<C-u>w <CR>" },
+        { "<leader>wq", ":<C-u>wqa <CR>" },
     },
 
     x = {
@@ -70,3 +81,7 @@ for mode, mapList in pairs(keymaps) do
     end
 end
 
+vim.api.nvim_set_keymap('v', 'H', '<Nop>', {noremap = true})
+vim.api.nvim_set_keymap('v', 'L', '<Nop>', {noremap = true})
+vim.api.nvim_set_keymap('n', 'J', '<Nop>', {noremap = true})
+vim.api.nvim_set_keymap('v', 'J', '<Nop>', {noremap = true})
