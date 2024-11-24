@@ -1,4 +1,4 @@
- local fn = vim.fn
+local fn = vim.fn
 
 local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -44,7 +44,6 @@ return packer.startup(function(use)
     use "nvim-lua/popup.nvim"
     use "nvim-lua/plenary.nvim"
 
-
     -- Telescope
     use 'nvim-telescope/telescope-symbols.nvim'
     use "nvim-telescope/telescope.nvim"
@@ -54,15 +53,31 @@ return packer.startup(function(use)
     use "nvim-tree/nvim-web-devicons"
     use "nvim-tree/nvim-tree.lua"
 
-    -- Vim Game To Train Vim Motion :)
-    use "ThePrimeagen/vim-be-good"
-
-    -- Past Image From Clipboard
+    -- Past Image From Clipboard(自己写的插件,暂时不用)
     use 'leyiang/clipboard-image.nvim'
 
-    -- Comment Plugin
+    -- gcc 可以自动注释
     use 'numToStr/Comment.nvim'
 
+    -- 表格式对齐 plugin
+    use 'godlygeek/tabular'
+
+    -- lazy git
+    use 'kdheepak/lazygit.nvim'
+
+    -- treesitter
+    use 'nvim-treesitter/nvim-treesitter'
+
+    -- 生成jsdoc类似的注释
+    use 'danymat/neogen'
+
+    -- cmp
+    use 'hrsh7th/nvim-cmp'
+    use 'hrsh7th/cmp-buffer'
+    use 'hrsh7th/cmp-path'
+    use 'hrsh7th/cmp-cmdline'
+
+    use 'tpope/vim-surround'
     if PACKER_BOOTSTRAP then
         require("packer").sync()
     end
