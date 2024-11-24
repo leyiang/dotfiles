@@ -1,84 +1,83 @@
-local fn = vim.fn
-
-local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-    PACKER_BOOTSTRAP = fn.system {
-        "git",
-        "clone",
-        "--depth",
-        "1",
-        "https://github.com/wbthomason/packer.nvim",
-        install_path,
-    }
-    print "Installing packer close and reopen NeoVim..."
-    vim.cmd [[packadd packer.nvim]]
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+    local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+    if vim.v.shell_error ~= 0 then
+        vim.api.nvim_echo({
+            { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+            { out, "WarningMsg" },
+            { "\nPress any key to exit..." },
+        }, true, {})
+        vim.fn.getchar()
+        os.exit(1)
+    end
 end
+vim.opt.rtp:prepend(lazypath)
 
+local plugins = {
+    -- My Plugins Here
+    "wbthomason/packer.nvim",
+    "nvim-lua/popup.nvim",
+    "nvim-lua/plenary.nvim",
 
---- Autocommand that reloads NeoVim whenever you save the plugins.lua file --
-vim.cmd [[
-    augroup packer_user_config
-        autocmd!
-        autocmd BufWritePost plugins.lua source <afile> | PackerSync
-    augroup end
-]]
+    -- Telescope
+    "nvim-telescope/telescope-symbols.nvim",
+    "nvim-telescope/telescope.nvim",
+    "nvim-telescope/telescope-media-files.nvim",
 
--- Hav Packer use a popup window --
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
-    vim.notify("Require `packer` fails")
-    return
-end
-packer.init {
-    display = {
-        open_fn = function()
-            return require("packer.util").float { border = "rounded" }
+    -- Nvim Tree
+    "nvim-tree/nvim-web-devicons",
+    "nvim-tree/nvim-tree.lua",
+
+    -- Past Image From Clipboard(自己写的插件,暂时不用)
+    "leyiang/clipboard-image.nvim",
+
+    -- gcc 可以自动注释
+    "numToStr/Comment.nvim",
+
+    -- 表格式对齐 plugin
+    "godlygeek/tabular",
+
+    -- lazy git
+    "kdheepak/lazygit.nvim",
+
+    -- treesitter
+    "nvim-treesitter/nvim-treesitter",
+
+    -- 生成jsdoc类似的注释
+    "danymat/neogen",
+
+    -- cmp
+    "hrsh7th/nvim-cmp",
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-path",
+    "hrsh7th/cmp-cmdline",
+
+    -- formatter
+    --  'stevearc/conform.nvim'
+    "mhartington/formatter.nvim",
+
+    -- 修改surrounding
+    "tpope/vim-surround",
+
+    "mg979/vim-visual-multi",
+    "williamboman/mason.nvim",
+
+    {
+        "catppuccin/nvim",
+        name = "catppuccin",
+        priority = 1000,
+        config = function()
+            require("catppuccin").setup({
+                flavour = "latte", -- latte, frappe, macchiato, mocha
+                background = { -- :h background
+                    light = "latte",
+                },
+            })
         end,
     },
 }
 
--- Install your plugins here
-return packer.startup(function(use)
-    -- My Plugins Here
-    use "wbthomason/packer.nvim"
-    use "nvim-lua/popup.nvim"
-    use "nvim-lua/plenary.nvim"
-
-    -- Telescope
-    use 'nvim-telescope/telescope-symbols.nvim'
-    use "nvim-telescope/telescope.nvim"
-    use "nvim-telescope/telescope-media-files.nvim"
-
-    -- Nvim Tree
-    use "nvim-tree/nvim-web-devicons"
-    use "nvim-tree/nvim-tree.lua"
-
-    -- Past Image From Clipboard(自己写的插件,暂时不用)
-    use 'leyiang/clipboard-image.nvim'
-
-    -- gcc 可以自动注释
-    use 'numToStr/Comment.nvim'
-
-    -- 表格式对齐 plugin
-    use 'godlygeek/tabular'
-
-    -- lazy git
-    use 'kdheepak/lazygit.nvim'
-
-    -- treesitter
-    use 'nvim-treesitter/nvim-treesitter'
-
-    -- 生成jsdoc类似的注释
-    use 'danymat/neogen'
-
-    -- cmp
-    use 'hrsh7th/nvim-cmp'
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/cmp-path'
-    use 'hrsh7th/cmp-cmdline'
-
-    use 'tpope/vim-surround'
-    if PACKER_BOOTSTRAP then
-        require("packer").sync()
-    end
-end)
+vim.g.mapleader = leader
+require("lazy").setup(plugins)
