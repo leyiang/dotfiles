@@ -20,35 +20,9 @@ export NVIM_PLUGIN_FOLDER="~/.local/share/nvim/site/pack/packer";
 export XM3_MAC="94:DB:56:85:7C:BD"
 
 # Custom Alias
-alias .nvim="cd ~/.config/nvim";
-alias .git="cd ${DOT_FOLDER}/git";
-alias .zsh="cd ${DOT_FOLDER}/zsh";
-alias .lt="cd ${CODE_FOLDER}/leetcode";
-alias .plugin="cd ${NVIM_PLUGIN_FOLDER}"
-alias .dot="cd ${DOT_FOLDER}";
-alias .w="cd ${WORK_FOLDER}";
-alias .todo="cd ${WORK_FOLDER}/todo";
-alias .blog="cd ${WORK_FOLDER}/leyiang.github.io/"
-alias .sokoban="cd ${WORK_FOLDER}/sokoban"
-alias .notes="cd ${WORK_FOLDER}/notes"
-alias .ai="cd ${WORK_FOLDER}/ai"
-alias .flash="cd ${WORK_FOLDER}/flashcard"
-alias .chrome="cd ${WORK_FOLDER}/chrome/chromium/src/out/Default"
-alias .dwm="cd ~/source/dwm"
-alias .doc="cd ${WORK_FOLDER}/doc"
-alias .ctf="cd ${WORK_FOLDER}/ctf"
-alias .test="cd ${WORK_FOLDER}/test"
-alias .t="cd ${WORK_FOLDER}/test"
-alias .a="cd ${WORK_FOLDER}/algo"
-alias .algo="cd ${WORK_FOLDER}/algo"
-alias .ap="cd /etc/apache2"
-alias .html="cd /var/www/html"
-alias .kr="cd /var/lib/minidlna/kr"
-alias .ala="cd ~/.config/alacritty"
+source ~/.zsh_cd_alias
+# Custom Alias
 
-alias .nand="cd /home/yiang/Work/nand-computer/nand2tetris"
-
-alias .blog="cd ${WORK_FOLDER}/blog"
 alias python="python3"
 alias pip="pip3"
 
