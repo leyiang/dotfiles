@@ -26,21 +26,30 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-# Enable Natural Scrolling
-xinput set-prop "SYNA2BA6:00 06CB:CF00 Touchpad" "libinput Natural Scrolling Enabled" 1
-
-# Enable Tap-to-click
-xinput set-prop "SYNA2BA6:00 06CB:CF00 Touchpad" "libinput Tapping Enabled" 1
-
-# Tweak touchpad spped
-xinput set-prop "SYNA2BA6:00 06CB:CF00 Touchpad" "libinput Accel Speed" .4
-
-# Tweak touchpad scroll speed
-xinput set-prop "SYNA2BA6:00 06CB:CF00 Touchpad" "libinput Scrolling Pixel Distance" 50 
-
-
-# Enable two-finger right click
-gsettings set org.gnome.desktop.peripherals.touchpad click-method 'areas'
+# # Enable Natural Scrolling
+# xinput set-prop "SYNA2BA6:00 06CB:CF00 Touchpad" "libinput Natural Scrolling Enabled" 1
+#
+# # Enable Tap-to-click
+# xinput set-prop "SYNA2BA6:00 06CB:CF00 Touchpad" "libinput Tapping Enabled" 1
+#
+# # Tweak touchpad spped
+# xinput set-prop "SYNA2BA6:00 06CB:CF00 Touchpad" "libinput Accel Speed" .4
+#
+# # Tweak touchpad scroll speed
+# xinput set-prop "SYNA2BA6:00 06CB:CF00 Touchpad" "libinput Scrolling Pixel Distance" 50 
+#
+#
+# # Enable two-finger right click
+# gsettings set org.gnome.desktop.peripherals.touchpad click-method 'areas'
 
 # Added by Toolbox App
 export PATH="$PATH:/home/yiang/.local/share/JetBrains/Toolbox/scripts"
+
+export GDK_SCALE=2
+# export QT_SCALE_FACTOR=2
+# export QT_AUTO_SCREEN_SCALE_FACTOR=2
+export GDK_DPI_SCALE=0.5
+# source ~/.zshrc_extra
+
+# turn off auto black screen
+xset s off -dpms
