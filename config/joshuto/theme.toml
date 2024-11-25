@@ -1,0 +1,131 @@
+##########################################
+## General
+##########################################
+lscolors_enabled = false
+# The image preview background color, only RGB colors are accepted.
+# preview_background = "#FFFFFF"
+
+##########################################
+## Tabs
+##########################################
+
+[tabs]
+[tabs.styles]
+
+# Style of active tab & current directory
+[tabs.styles.active]
+fg = "black"
+bold = true
+
+# Style of inactive tabs
+[tabs.styles.inactive]
+
+# Style of the left/front tab scroll tag (when tabs overflow)
+[tabs.styles.scroll_front]
+fg = "yellow"
+bold = true
+
+# Style of the right/back tab scroll tag (when tabs overflow)
+[tabs.styles.scroll_back]
+fg = "yellow"
+bold = true
+
+# There are more style options and strings to configure
+# the tab-bar theme.
+
+##########################################
+## File List - Selections
+##########################################
+
+# Selected files (standard selection)
+[selection]
+fg = "light_yellow"
+bg = "red"
+bold = true
+
+# Files selected in current visual mode
+[visual_mode_selection]
+fg = "white"
+bg = "red"
+bold = true
+prefix = "v "
+
+##########################################
+## File List - System File Types
+##########################################
+
+# For directories
+[directory]
+fg = "light_blue"
+bold = true
+
+# For symbolic links
+[link]
+fg = "cyan"
+bold = true
+
+# For socket files
+[socket]
+fg = "light_magenta"
+bold = true
+
+##########################################
+## File List - Exceptional Files
+##########################################
+
+# Files marked as executable
+[executable]
+fg = "#8dad52"
+bold = true
+
+# Invalid symbolic links (pointing to non-existing target)
+[link_invalid]
+fg = "red"
+bold = true
+
+##########################################
+## File list - Override style by extension
+##########################################
+# This sections allows to override the basic
+# style with a specific style for the file's
+# extension.
+
+[ext]
+
+wav.fg = "magenta"
+flac.fg = "magenta"
+mp3.fg = "magenta"
+amr.fg = "magenta"
+
+avi.fg = "magenta"
+flv.fg = "magenta"
+m3u.fg = "magenta"
+m4a.fg = "magenta"
+m4v.fg = "magenta"
+mkv.fg = "magenta"
+mov.fg = "magenta"
+mp4.fg = "magenta"
+mpg.fg = "magenta"
+rmvb.fg = "magenta"
+webm.fg = "magenta"
+wmv.fg = "magenta"
+
+[msg_info]
+fg="yellow"
+bold=true
+# bg="blue"
+
+[username]
+fg="light_blue"
+# bg="light_yellow"
+bold=true
+
+[prompt]
+fg="red"
+bg="white"
+bold=true
+
+[indicator]
+fg="white"
+bg="light_blue"
+bold=true
