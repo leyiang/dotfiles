@@ -33,9 +33,9 @@ require("nvim-tree").setup({
     },
     update_focused_file = {
         enable = true,
-        update_cwd = true,
+        -- update_cwd = true,
     },
-    update_cwd = true,
+    -- update_cwd = true,
 })
 
 vim.g.nvim_tree_respect_buf_cwd = 1

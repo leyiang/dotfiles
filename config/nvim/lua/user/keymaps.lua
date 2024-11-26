@@ -47,6 +47,9 @@ local keymaps = {
         { "<leader>t", ":ToggleBool<CR>" },
         { "<leader>lg", "<cmd>LazyGit<CR>" },
         { "<leader>ng", "<cmd>Neogen<CR>" },
+        { "<leader>ala", ":!alacritty& <CR>" },
+
+        -- { "1", "$" },
     },
     i = {
         {"<F3>", '<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>'}
@@ -55,6 +58,8 @@ local keymaps = {
         { "<", "<gv" },
         { ">", ">gv" },
         {"<leader>a", ":w !xclip -i -sel c<CR><CR>"},
+
+        -- { "1", "$" },
 
         -- :m .+1 -- Move one line downward
         -- == -- double equal sign re-indent the line.
