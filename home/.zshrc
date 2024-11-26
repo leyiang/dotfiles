@@ -89,14 +89,6 @@ export PYTHONSTARTUP=~/.python_startup.py
 alias ag="sgpt"
 alias copy="tr -d '\n' | xclip -selection clipboard"
 
-# Define the completion function
-_nvimf() {
-    # List all scripts in ~/.local/bin/ to complete the script name
-    reply=(~/.local/bin/*(:t))
-}
-
-# Call the completion function when completing "nvimf"
-compctl -K _nvimf nvimf
 alias l="ls -lSh"
 
 
@@ -118,3 +110,4 @@ export HSTR_TIOCSTI=n
 alias lg="lazygit"
 
 source ~/.cargo/env
+source ~/.zsh_cmp

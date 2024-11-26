@@ -1,0 +1,43 @@
+# Define the completion function
+_nvimf() {
+    # List all scripts in ~/.local/bin/ to complete the script name
+    reply=(~/.local/bin/*(:t))
+}
+
+# Call the completion function when completing "nvimf"
+compctl -K _nvimf nvimf
+
+_o_completion() {
+  local cur prev words cword
+
+  # Get the current and previous words
+  cur="${COMP_WORDS[COMP_CWORD]}"
+  prev="${COMP_WORDS[COMP_CWORD-1]}"
+
+  # List of common apt subcommands
+  local apt_subcommands="update upgrade install remove purge search show hold unhold list check autoremove clean autoclean source download build-dep changelog policy versions edit-sources"
+
+  # Complete subcommands
+  if [ "$prev" = "a" ]; then
+    COMPREPLY=( $(compgen -W "$apt_subcommands" -- $cur) )
+  else
+    # Complete arguments for specific subcommands
+    case "$prev" in
+      update|upgrade|autoremove|clean|autoclean|check|edit-sources)
+        # These subcommands don't take package names
+        ;;
+      install|remove|purge|hold|unhold)
+        # Complete package names
+        COMPREPLY=( $(compgen -W "$(apt-cache pkgnames)" -- $cur) )
+        ;;
+      # search|show|list|source|download|build-dep|changelog|policy|versions)
+      #   # Complete package names or other arguments
+      #   COMPREPLY=( $(compgen -W "$(apt-cache pkgnames)" -- $cur) )
+      #   ;;
+    esac
+  fi
+
+  return 0
+}
+
+complete -F _o_completion o
