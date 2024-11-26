@@ -8,26 +8,25 @@ video_default = [
     { command = "mpv" }
 ]
 
+all_default = [
+    { command = "xdg-open" }
+]
+
 [extension]
-png.inherit    = "image_default"
-jpg.inherit    = "image_default"
-jpeg.inherit    = "image_default"
+## Image Type
+png.inherit  = "image_default"
+jpg.inherit  = "image_default"
+jpeg.inherit = "image_default"
+webp.inherit = "image_default"
 
-# jpg.app_list    = [
-#     { command = "gimp", fork = true, silent = true } ]
-
-mkv.app_list    = [
-    { command = "mpv", args = [ "--" ] , fork = true, silent = true },
-    { command = "mediainfo", confirm_exit = true },
-    { command = "mpv", args = [ "--mute", "on", "--" ], fork = true, silent = true } ]
-rs.app_list    = [
-    { command = "micro" },
-    { command = "gedit", fork = true, silent = true },
-    { command = "bat", confirm_exit = true } ]
-
-mp4.inherit = "video_default"
-ts.inherit = "video_default"
+## Video Type
+mkv.inherit  = "video_default"
+mp4.inherit  = "video_default"
+ts.inherit   = "video_default"
 webm.inherit = "video_default"
+
+## Epub Type
+epub.inherit = "all_default"
 
 [mimetype]
 
