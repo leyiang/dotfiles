@@ -2,7 +2,6 @@
 local options = {
     backup         = false,
     cmdheight      = 2,
-    autoindent     = true,
     smartindent    = true,
     fileencoding   = 'utf-8',
     hlsearch       = false,
@@ -10,10 +9,6 @@ local options = {
     termguicolors  = true,
     splitbelow     = true,
     splitright     = true,
-    expandtab      = true,
-    tabstop        = 4,
-    softtabstop    = 4,
-    shiftwidth     = 4,
     cursorline     = true,
     number         = true,
     relativenumber = true,
@@ -24,10 +19,26 @@ local options = {
     bg             = "light",
     ignorecase     = true,
 
-    -- signcolumn = 'yes',
+
+    autoindent     = true,
+    expandtab      = false,
+    shiftwidth     = 4,
+    tabstop        = 4,
+
+    listchars="eol:$,space:-,tab:>#,trail:~",
+    list= true
+
     -- autochdir = true,
 }
 
 for k, v in pairs(options) do
     vim.opt[k] = v
 end
+
+ -- vim.opt.list = false
+vim.g.loaded_matchparen = false
+vim.o.termguicolors = true
+
+vim.diagnostic.config({
+  signs = false
+})
