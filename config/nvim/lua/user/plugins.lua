@@ -27,8 +27,8 @@ local plugins = {
     "nvim-telescope/telescope-media-files.nvim",
 
     -- Nvim Tree
-    "nvim-tree/nvim-web-devicons",
-    "nvim-tree/nvim-tree.lua",
+    -- "nvim-tree/nvim-web-devicons",
+    -- "nvim-tree/nvim-tree.lua",
 
     -- Past Image From Clipboard(自己写的插件,暂时不用)
     "leyiang/clipboard-image.nvim",
@@ -53,6 +53,8 @@ local plugins = {
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-cmdline",
+    "hrsh7th/cmp-nvim-lsp",
+    "neovim/nvim-lspconfig",
 
     -- formatter
     --  'stevearc/conform.nvim'
@@ -63,6 +65,7 @@ local plugins = {
 
     "mg979/vim-visual-multi",
     "williamboman/mason.nvim",
+  {'williamboman/mason-lspconfig.nvim'},
 
     {
         "catppuccin/nvim",
@@ -77,6 +80,26 @@ local plugins = {
             })
         end,
     },
+
+    -- {
+    --   "mikavilpas/yazi.nvim",
+    --     event = "VeryLazy",
+    --     opts = {
+    --         open_for_directories = true,
+    --     }
+    -- },
+
+    {
+        dir = "/home/yiang/Work/yazi.nvim",
+        event = "VeryLazy",
+        opts = {
+            open_for_directories = true,
+        },
+    },
+
+    -- 'projekt0n/github-nvim-theme'
+    "rktjmp/lush.nvim",
+    "ellisonleao/gruvbox.nvim",
 }
 
 vim.g.mapleader = leader

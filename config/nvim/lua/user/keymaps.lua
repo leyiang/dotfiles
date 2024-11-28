@@ -38,7 +38,9 @@ local keymaps = {
         { "<leader>t", "<cmd>Telescope live_grep<cr>" },
         { "<leader>/", "<cmd>lua require('Comment').toggle()<CR>" },
         { "<leader>i", ":Pimg<cr>" },
-        { "<leader>e", ":NvimTreeToggle<cr>" },
+        -- { "<leader>e", ":NvimTreeToggle<cr>" },
+        { "<leader>e", ":Yazi<cr>" },
+        { "<C-up>", "<cmd>Yazi toggle<cr>"},
         { "<leader>q<CR>", ":qa! <CR>" },
         { "<leader>w<CR>", ":w <CR>" },
         { "<leader>wq", ":wqa <CR>" },
@@ -47,10 +49,12 @@ local keymaps = {
         { "<leader>t", ":ToggleBool<CR>" },
         { "<leader>lg", "<cmd>LazyGit<CR>" },
         { "<leader>ng", "<cmd>Neogen<CR>" },
-        { "<leader>ala", ":!alacritty& <CR>" },
+        { "<leader>al", ":!alacritty& <CR>" },
+        { "<leader>pf", "<cmd>Format<CR>" },
     },
     i = {
-        {"<F3>", '<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>'}
+        {"<F3>", '<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>'},
+        { "<C-a>", "<Esc><Esc>" },
     },
     v = {
         { "<", "<gv" },
@@ -87,4 +91,4 @@ vim.api.nvim_set_keymap('v', 'L', '<Nop>', {noremap = true})
 vim.api.nvim_set_keymap('n', 'J', '<Nop>', {noremap = true})
 vim.api.nvim_set_keymap('v', 'J', '<Nop>', {noremap = true})
 
-vim.api.nvim_set_keymap('v', "<leader>tab", ":Tabular /", {noremap = true})
+vim.api.nvim_set_keymap('v', "<leader>t", ":Tabular /", {noremap = true})
