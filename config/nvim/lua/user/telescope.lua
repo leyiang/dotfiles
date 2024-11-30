@@ -11,7 +11,7 @@ telescope.setup({
 	defaults = {
 
 		-- ".cache", "%.o", "%.a", "%.out", "%.class", "%.pdf", "%.mkv", "%.mp4", "%.zip"
-		file_ignore_patterns = { ".git/", "node_modules/", "target/debug/", "target/release" },
+		file_ignore_patterns = { "^.git/", "node_modules/", "target/debug/", "target/release" },
 		prompt_prefix = " ",
 		selection_caret = " ",
 		path_display = { "smart" },
