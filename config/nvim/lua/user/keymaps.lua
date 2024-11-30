@@ -67,7 +67,7 @@ local keymaps = {
 
 		{ "<A-j>", ":m .+2<cr>==gv" },
 		{ "<A-k>", ":m .-2<cr>==gv" },
-		{ "p", '"_dP' },
+		-- { "p", '"_dP' },
 
 		{ "<leader>q<CR>", ":qa! <CR>" },
 		{ "<leader>w<CR>", ":<C-u>w <CR>" },
