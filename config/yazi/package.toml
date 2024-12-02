@@ -1,0 +1,5 @@
+[plugin]
+deps = [{ use = "dedukun/relative-motions", rev = "1d6d686" }, { use = "yazi-rs/plugins:smart-enter", rev = "38418dd" }, { use = "dawsers/toggle-view", rev = "d326a53" }, { use = "Sonico98/exifaudio", rev = "855ff05" }, { use = "AnirudhG07/custom-shell", rev = "d7fb2b3" }]
+
+[flavor]
+deps = []

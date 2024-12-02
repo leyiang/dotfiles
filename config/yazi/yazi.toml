@@ -1,0 +1,54 @@
+[manager]
+ratio=[2, 6, 0]
+linemode="size"
+
+[opener]
+play = [
+    { run = 'mpv "$@"', orphan = true, for = "unix" },
+]
+
+edit = [
+    { run = 'nvim "$@"', block = true, for = "unix" },
+]
+
+pdf = [
+    { run = 'zathura "$@"', desc = "Open" },
+    { run = 'file "$@"', block=true, desc = " file" },
+]
+
+epub = [
+    { run = 'ebook-viewer "$@"', desc = "Open epub" },
+]
+
+extract = [
+    { run = 'ouch d -y "$@"', desc = "Extract here with ouch", for = "unix" },
+]
+
+py = [
+    { run = 'nvim "$@"', block = true, for = "unix" },
+    { run = 'python "$@"', desc = "run", for = "unix" },
+]
+
+[open]
+prepend_rules = [
+    { name = "*.ts", use = "play" },
+    # Multiple openers for a single rule
+    { name = "*.html", use = [ "edit" ] },
+    { name = "*.pdf", use = "pdf" },
+    { name = "*.epub", use = "epub" },
+    { name = "*.py", use = "py" },
+    { mime = "text/*", use = "edit" },
+    { mime = "video/*", use = "play" },
+    { mime = "application/postscript", use = "edit" },
+]
+
+[plugin]
+prepend_preloaders = [
+	{ mime = "*", run = "noop" },
+]
+
+prepend_previewers = [
+    { mime = "audio/*" , run = "noop" },
+    { mime = "video/*" , run = "noop" },
+    # { name = "*" , run = "noop" },
+]
