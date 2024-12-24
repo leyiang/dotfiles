@@ -1,0 +1,31 @@
+# # Meta+o to Ctrl+Tab
+# "xdotool keyup super && xdotool key ctrl+Tab"
+#     Super+o
+#
+# # Meta+i to Ctrl+Shift+Tab
+# "xdotool keyup super && xdotool key ctrl+shift+Tab"
+#     Super+i
+
+"vol prev"
+    alt + shift + Left
+
+# "vol prev"
+#     alt + shift + h
+
+"vol next"
+    alt + shift + Right
+
+# "vol next"
+#     alt + shift + l
+
+"vol pause"
+    alt + shift + Down
+
+"vol pause"
+    alt + shift + j
+
+"vol half-up"
+	alt + XF86AudioRaiseVolume
+
+"vol half-down"
+	alt + XF86AudioLowerVolume
