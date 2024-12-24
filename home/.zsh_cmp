@@ -41,3 +41,17 @@ _o_completion() {
 }
 
 complete -F _o_completion o
+
+# 定义补全函数
+_o() {
+  local -a options=(
+  	'rh' 'r' 'mod' 'nvim' 'ala' 'apache' 'tamper' 'ra' 'lg' 'dwm' 'alias' 'f' 'd' 'wifi'
+	'key' 'init' 'm' 'cl_thumb' 'ip' 'qr' 'reload' 'k' 'josh' 'wubi' 'baidu' 'fix_encode'
+	'transfer' 'android' 'cl' 'mylib' 'yazi' 'mpv' 'br' 'p' 'vite' 'sr' 'st' 'ss' 'a' 'ai'
+	'quick'
+  )
+  _describe -t commands "o subcommands" options
+}
+
+# 将补全函数与命令关联
+compdef _o o
