@@ -1,0 +1,16 @@
+# ctrl+insert && shift+insert 复制和粘贴
+[[keyboard.bindings]]
+action = "Copy"
+key = "Insert"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "Insert"
+mods = "Shift"
+
+# ctrl+enter 打开新终端
+[[keyboard.bindings]]
+key = "Return"
+mods = "Alt"
+command = "alacritty"
