@@ -5,6 +5,7 @@ linemode="size"
 [opener]
 play = [
     { run = 'mpv "$@"', orphan = true, for = "unix" },
+    { run = 'vlc "$@"', orphan = true, for = "unix" },
 ]
 
 edit = [
@@ -12,8 +13,8 @@ edit = [
 ]
 
 pdf = [
-    { run = 'zathura "$@"', desc = "Open" },
-    { run = 'file "$@"', block=true, desc = " file" },
+    { run = 'zathura "$@"' , orphan=true , desc = "Open" }  ,
+    { run = 'file "$@"'    , block=true  , desc = " file" } ,
 ]
 
 epub = [
@@ -29,6 +30,14 @@ py = [
     { run = 'python "$@"', desc = "run", for = "unix" },
 ]
 
+audio = [
+    { run = 'mpv "$@"', for = "unix" },
+]
+
+chrome = [
+    { run = 'google-chrome "$@"', for = "unix" },
+]
+
 [open]
 prepend_rules = [
     { name = "*.ts", use = "play" },
@@ -37,8 +46,11 @@ prepend_rules = [
     { name = "*.pdf", use = "pdf" },
     { name = "*.epub", use = "epub" },
     { name = "*.py", use = "py" },
+    { name = "*.m4a", use = "audio" },
+    { name = "*.svg", use = "chrome" },
     { mime = "text/*", use = "edit" },
     { mime = "video/*", use = "play" },
+    { mime = "audio/*", use = "audio" },
     { mime = "application/postscript", use = "edit" },
 ]
 

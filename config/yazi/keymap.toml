@@ -1,6 +1,7 @@
 [manager]
 
 keymap = [
+    { on = "<A-s>", run = "quit",             desc = "Exit visual mode, clear selected, or cancel search" },
     { on = "<Esc>", run = "escape",             desc = "Exit visual mode, clear selected, or cancel search" },
     { on = "<C-[>", run = "escape",             desc = "Exit visual mode, clear selected, or cancel search" },
     { on = "q",     run = "quit",               desc = "Quit the process" },
@@ -26,6 +27,7 @@ keymap = [
     { on = "<PageDown>",   run = "arrow 100%",  desc = "Move cursor down one page" },
 
     { on = [ "g", "g" ], run = "arrow -99999999", desc = "Move cursor to the top" },
+    { on = [ "g", "e" ], run = "arrow 99999999", desc = "Move cursor to the top" },
     { on = "G",          run = "arrow 99999999",  desc = "Move cursor to the bottom" },
 
     # Navigation
@@ -77,8 +79,10 @@ keymap = [
     # { on = [ "c", "f" ], run = "copy filename",         desc = "Copy the filename" },
     # { on = [ "c", "n" ], run = "copy name_without_ext", desc = "Copy the filename without extension" },
 
-    { on = ["p", "p"],  run = "paste",                       desc = "Paste yanked files" },
+    { on = ["p"],  run = "paste",                       desc = "Paste yanked files" },
 
+    { on = [ "c", "l", "e", "a", "r", "<Enter>" ], run = "shell --confirm 'ls'",             desc = "Copy the file path" },
+    { on = [ "c", "l", "e", "a", "r", "g" ], run = "shell --confirm 'ls'",             desc = "Copy the file path" },
 
 	# #recover
     { on = ["u", "v"],  run = ["unyank", "escape"],          desc = "Paste yanked files" },
@@ -96,6 +100,7 @@ keymap = [
     { on = "a",         run = "create",                      desc = "Create a file (ends with / for directories)" },
     { on = "r",         run = "rename --cursor=before_ext",  desc = "Rename selected file(s)" },
     # { on = ";",         run = "shell --interactive",       desc = "Run a shell command" },
+
 	{ on = ":",         run = "shell --block --interactive", desc = "Run a shell command (block until finishes)" },
 
     { on = "s",         run = "search fd",                   desc = "Search files by name via fd" },
@@ -105,11 +110,13 @@ keymap = [
     { on = "Z",         run = "plugin fzf",                  desc = "Jump to a file/directory via fzf" },
 
     # #open
+    { on = ["o", "c"], run = "shell --confirm --orphan 'cursor .'", desc = "cursor" },
     { on = ["o", "g"], run = "shell --block --confirm 'lazygit'",   desc = "Lazy git" },
     { on = ["o", "n"], run = "shell --block --confirm 'nvim .'",    desc = "Nvim" },
     { on = ["o", "v"], run = "shell --block --confirm 'code .'",    desc = "vscode" },
     { on = ["o", "d"], run = "shell --confirm --orphan 'dolphin .'", desc = "dolphin" },
-    { on = ["o", "a"], run = "shell --block --confirm 'alacritty'", desc = "alacritty" },
+    { on = ["o", "a"], run = "shell --confirm --orphan 'alacritty'", desc = "alacritty" },
+	{ on = ["o", "r"], run = "shell --block --interactive", desc = "Run a shell command (block until finishes)" },
 
     # Linemode
     { on = [ "m", "s" ], run = "linemode size",        desc = "Linemode: size" },
@@ -136,21 +143,26 @@ keymap = [
     # { on = "N", run = "find --clear",   desc = "Goto the previous found" },
 
     # Sorting
-    { on = [ ",", "m" ], run = [ "sort mtime --reverse=no", "linemode mtime" ], desc = "Sort by modified time" },
-    { on = [ ",", "M" ], run = [ "sort mtime --reverse", "linemode mtime" ],    desc = "Sort by modified time (reverse)" },
-    { on = [ ",", "b" ], run = [ "sort btime --reverse=no", "linemode btime" ], desc = "Sort by birth time" },
-    { on = [ ",", "B" ], run = [ "sort btime --reverse", "linemode btime" ],    desc = "Sort by birth time (reverse)" },
-    { on = [ ",", "e" ], run = "sort extension --reverse=no",                   desc = "Sort by extension" },
-    { on = [ ",", "E" ], run = "sort extension --reverse",                      desc = "Sort by extension (reverse)" },
-    { on = [ ",", "a" ], run = "sort alphabetical --reverse=no",                desc = "Sort alphabetically" },
-    { on = [ ",", "A" ], run = "sort alphabetical --reverse",                   desc = "Sort alphabetically (reverse)" },
-    { on = [ ",", "n" ], run = "sort natural --reverse=no",                     desc = "Sort naturally" },
-    { on = [ ",", "N" ], run = "sort natural --reverse",                        desc = "Sort naturally (reverse)" },
-    { on = [ ",", "s" ], run = [ "sort size --reverse=no", "linemode size" ],   desc = "Sort by size" },
-    { on = [ ",", "S" ], run = [ "sort size --reverse", "linemode size" ],      desc = "Sort by size (reverse)" },
+    { on = [ ",", "M" ], run = [ "sort mtime --reverse=no", "linemode mtime" ], desc = "Sort by modified time" },
+    { on = [ ",", "m" ], run = [ "sort mtime --reverse", "linemode mtime" ],    desc = "Sort by modified time (reverse)" },
+
+
+    { on = [ ",", "E" ], run = "sort extension --reverse=no",                   desc = "Sort by extension" },
+    { on = [ ",", "e" ], run = "sort extension --reverse",                      desc = "Sort by extension (reverse)" },
+    { on = [ ",", "A" ], run = "sort alphabetical --reverse=no",                desc = "Sort alphabetically" },
+    { on = [ ",", "a" ], run = "sort alphabetical --reverse",                   desc = "Sort alphabetically (reverse)" },
+    { on = [ ",", "N" ], run = "sort natural --reverse=no",                     desc = "Sort naturally" },
+    { on = [ ",", "n" ], run = "sort natural --reverse",                        desc = "Sort naturally (reverse)" },
+
+    { on = [ ",", "B" ], run = [ "sort btime --reverse=no", "linemode btime" ], desc = "Sort by birth time" },
+    { on = [ ",", "b" ], run = [ "sort btime --reverse", "linemode btime" ],    desc = "Sort by birth time (reverse)" },
+    { on = [ ",", "S" ], run = [ "sort size --reverse=no", "linemode size" ],   desc = "Sort by size" },
+    { on = [ ",", "s" ], run = [ "sort size --reverse", "linemode size" ],      desc = "Sort by size (reverse)" },
+
     { on = [ ",", "r" ], run = "sort random --reverse=no",                      desc = "Sort randomly" },
 
     # #goto
+    { on = [ "g", "/"       ], run = "cd /",             desc = "Go home" },
     { on = [ "g", "h"       ], run = "cd ~",             desc = "Go home" },
     { on = [ "g", "k"       ], run = "cd -",             desc = "Go prev folder" },
     { on = [ "g", "c"       ], run = "cd ~/.config",     desc = "Goto ~/.config" },
@@ -161,28 +173,37 @@ keymap = [
     # #dot
     { on = [ ".", "l"       ], run = "cd ~/.local",             desc = "Goto ~/.local" },
     { on = [ ".", "v"       ], run = "cd ~/Videos",             desc = "Goto ~/Videos" },
+    { on = [ ".", "m"       ], run = "cd ~/Videos/movie",       desc = "Goto ~/Video/movie" },
     { on = [ ".", "b"       ], run = "cd ~/Books",              desc = "Goto ~/Books" },
     { on = [ ".", "w"       ], run = "cd ~/Work",               desc = "Goto ~/Work" },
     { on = [ ".", "c"       ], run = "cd ~/.config",            desc = "Goto ~/.config" },
     { on = [ ".", "k", "r"  ], run = "cd /var/lib/minidlna/kr", desc = "Goto /var/lib/minidlna/kr/" },
+    { on = [ ".", "a", "p"  ], run = "cd /etc/apache2", 		desc = "Goto /etc/apache2" },
     { on = [ ".", "d", "l"  ], run = "cd ~/Downloads",          desc = "Goto ~/Downloads" },
-    { on = [ ".", "d", "o", "t"  ], run = "cd ~/Work/dotfiles",          desc = "Goto ~/Downloads" },
+    { on = [ ".", "d", "o", "t"  ], run = "cd ~/Work/dotfiles", desc = "Goto ~/Work/dotfiles" },
+    { on = [ ".", "d", "o", "c"  ], run = "cd ~/Documents",     desc = "Goto ~/Documents" },
 
-    { on = [ ".", "t", "r"           ], run = "cd ~/Work/transfer",      desc = "Goto ~/Work/transfer" },
-    { on = [ ".", "t", "<Enter>"     ], run = "cd ~/Work/test",          desc = "Goto ~/Work/test"    },
-    { on = [ ".", "h", "t", "m", "l" ], run = "cd /var/www/html",        desc = "Goto /var/www/html"  },
+    { on = [ ".", "e", "x", "t"  ], run = "cd /home/yiang/Work/chrome-plugins",          desc = "Goto Chrome Ext" },
+    { on = [ ".", "e", "x", "x"  ], run = "cd /home/yiang/Work/chrome-plugins",          desc = "Goto Chrome Ext" },
 
-    { on = [ ".", "." ], run = ["hidden toggle", "arrow -99999999"], desc = "Toggle the visibility of hidden files" },
+    { on = [ ".", "t", "r"           ], run = "cd ~/Work/transfer",      	desc = "Goto ~/Work/transfer" },
+    { on = [ ".", "t", "e"           ], run = "cd ~/Books/teacher-files",   desc = "Goto ~/Work/transfer" },
+    { on = [ ".", "t", "<Enter>"     ], run = "cd ~/Work/test",          	desc = "Goto ~/Work/test"    },
+    { on = [ ".", "h", "t" ], run = "cd /var/www/html",        				desc = "Goto /var/www/html"  },
+
+    { on = [ ".", "." ], run = ["hidden toggle", "arrow -99999999"], 		desc = "Toggle the visibility of hidden files" },
 
 	# 下面几个是不用的规则，加上是防止yazi自动跳过字符
 	# 如果只有 .html, 输入.h就会自动跳转了, 这里加上.htmv 防止跳过字符
-    { on = [ ".", "h", "t", "m", "v"  ], run = "cd /var/www/html",        desc = "Goto /var/www/html" },
-    { on = [ ".", "d", "d"  ],           run = "cd ~/Downloads",          desc = "Goto ~/Downloads" },
-    { on = [ ".", "k", "k"  ],           run = "-",                       desc = "Goto -" },
-    { on = [ ".", "d", "o", "o"  ], run = "cd ~/Work/dotfiles",          desc = "Goto ~/Downloads" },
+    { on = [ ".", "h", "h"  ], 		run = "cd /var/www/html",       desc = "Placeholder" },
+    { on = [ ".", "d", "d"  ],      run = "cd ~/Downloads",         desc = "Placeholder" },
+    { on = [ ".", "k", "k"  ],      run = "-",                      desc = "Placeholder" },
+    { on = [ ".", "d", "o", "o"  ], run = "cd ~/Work/dotfiles",     desc = "Placeholder" },
+    { on = [ ".", "a", "a"  ], 		run = "cd /etc/apache2", 		desc = "Placeholder" },
 
 
-    { on = [ "e" ],        run = ''' shell --block --confirm 'nvim "$0"' ''', desc = "Jump interactively" },
+
+    { on = [ "e" ],        run = ''' shell --block --confirm 'try_edit "$0"' ''', desc = "Jump interactively" },
 
     # Tabs
     { on = ["t", "u"], run = "tab_create --current", desc = "Create a new tab with CWD" },
@@ -219,6 +240,7 @@ keymap = [
     { on = "<C-[>", run = "close", desc = "Close task manager" },
     { on = "<C-c>", run = "close", desc = "Close task manager" },
     { on = "w",     run = "close", desc = "Close task manager" },
+    { on = "q",     run = "close", desc = "Close task manager" },
 
     { on = "k", run = "arrow -1", desc = "Move cursor up" },
     { on = "j", run = "arrow 1",  desc = "Move cursor down" },
