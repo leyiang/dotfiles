@@ -24,3 +24,12 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 		vim.fn.jobstart("cd /home/yiang/Work/tamper-scripts/ && ./build")
 	end,
 })
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+	group = "AutoSaveToBackup",
+	pattern = "/usr/share/fcitx5/data/quickphrase.d/my.mb", 
+	callback = function()
+		-- Run the command
+		vim.fn.jobstart("fcitx5 -r")
+	end,
+})

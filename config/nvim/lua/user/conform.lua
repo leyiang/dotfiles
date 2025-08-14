@@ -42,6 +42,22 @@ require("formatter").setup({
 			end,
 		},
 
+		javascript = {
+			-- 			local util = require "formatter.util",
+			--
+			function()
+				return {
+					exe = "biome",
+					args = {
+						"format",
+						"--stdin-file-path",
+						util.escape_path(util.get_current_buffer_file_path()),
+					},
+					stdin = true,
+				}
+			end,
+		},
+
 		-- Use the special "*" filetype for defining formatter configurations on
 		-- any filetype
 		["*"] = {
@@ -50,6 +66,18 @@ require("formatter").setup({
 			require("formatter.filetypes.any").remove_trailing_whitespace,
 			-- Remove trailing whitespace without 'sed'
 			-- require("formatter.filetypes.any").substitute_trailing_whitespace,
+			--
+			function()
+				return {
+					exe = "tabular_file",
+					args = {
+						-- "format",
+						-- "--stdin-file-path",
+						util.escape_path(util.get_current_buffer_file_path()),
+					},
+					stdin = true,
+				}
+			end,
 		},
 	},
 })

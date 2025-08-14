@@ -14,7 +14,6 @@ local options = {
 	relativenumber = true,
 	wrap = false,
 	scrolloff = 8,
-	list = true,
 	clipboard = "unnamedplus",
 	bg = "light",
 	ignorecase = true,
@@ -24,10 +23,11 @@ local options = {
 	shiftwidth = 4,
 	tabstop = 4,
 
-	listchars = "space:_,tab:>#,trail:~",
-	list = true,
-
+	list = false,
+	-- listchars = "space:_,tab:>#,trail:~",
 	-- autochdir = true,
+	--
+	swapfile = false
 }
 
 for k, v in pairs(options) do

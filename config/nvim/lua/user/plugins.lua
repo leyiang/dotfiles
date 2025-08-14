@@ -25,13 +25,14 @@ local plugins = {
 	"nvim-telescope/telescope-symbols.nvim",
 	"nvim-telescope/telescope.nvim",
 	"nvim-telescope/telescope-media-files.nvim",
+	"smartpde/telescope-recent-files",
 
 	-- Nvim Tree
 	-- "nvim-tree/nvim-web-devicons",
 	-- "nvim-tree/nvim-tree.lua",
 
 	-- Past Image From Clipboard(自己写的插件,暂时不用)
-	"leyiang/clipboard-image.nvim",
+	-- "leyiang/clipboard-image.nvim",
 
 	-- gcc 可以自动注释
 	"numToStr/Comment.nvim",
@@ -39,14 +40,8 @@ local plugins = {
 	-- 表格式对齐 plugin
 	"godlygeek/tabular",
 
-	-- lazy git
-	-- "kdheepak/lazygit.nvim",
-
 	-- treesitter
 	"nvim-treesitter/nvim-treesitter",
-
-	-- 生成jsdoc类似的注释
-	"danymat/neogen",
 
 	-- cmp
 	"hrsh7th/nvim-cmp",
@@ -79,10 +74,12 @@ local plugins = {
 		},
 	},
 
-	{
-		-- Lazy Git 插件, 在本地, 修复了不自动调整大小的BUG
-		dir = "/home/yiang/Work/nvim-plugs/lazygit.nvim"
-	},
+
+	-- lazy git
+	-- "kdheepak/lazygit.nvim",
+	--
+	-- Lazy Git 插件, 在本地, 修复了不自动调整大小的BUG
+	{ dir = "/home/yiang/Work/nvim-plugs/lazygit.nvim" },
 
 	{
 		"folke/lazydev.nvim",
@@ -94,6 +91,14 @@ local plugins = {
 			{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
 		  },
 	},
+
+	{
+		"L3MON4D3/LuaSnip",
+		-- follow latest release.
+		version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+		-- install jsregexp (optional!).
+		build = "make install_jsregexp"
+	}
   },
 }
 
