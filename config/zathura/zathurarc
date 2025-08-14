@@ -1,2 +1,14 @@
-set guioptions none
+# set guioptions none
+
+# Map 'j' to scroll down
+unmap +
+unmap =
+unmap d
+
+
+map = zoom in
+map w scroll half-up
+map d scroll half-down
+
+map 0 zoom width
 

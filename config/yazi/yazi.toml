@@ -1,6 +1,8 @@
 [manager]
 ratio=[2, 6, 0]
 linemode="size"
+sort_by="btime"
+sort_reverse=true
 
 [opener]
 play = [

@@ -3,3 +3,14 @@ nvim/.config/nvim/plugin
 
 .zshrc_extra
 .zshrc_third_party
+config/nvim/lua/user/pinyin.lua
+*.zip
+*.otf
+*.ttf
+*.woff2
+
+**/__pycache__
+config/ranger/plugins
+config/ranger/colorschemes/__init__.py
+*.bck
+config/yazi/plugins

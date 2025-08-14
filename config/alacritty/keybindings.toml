@@ -14,3 +14,8 @@ mods = "Shift"
 key = "Return"
 mods = "Alt"
 command = "alacritty"
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u000A"

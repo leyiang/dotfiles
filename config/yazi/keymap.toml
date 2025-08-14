@@ -186,12 +186,24 @@ keymap = [
     { on = [ ".", "e", "x", "t"  ], run = "cd /home/yiang/Work/chrome-plugins",          desc = "Goto Chrome Ext" },
     { on = [ ".", "e", "x", "x"  ], run = "cd /home/yiang/Work/chrome-plugins",          desc = "Goto Chrome Ext" },
 
+    { on = [ ".", "n", "e", "i"  ], run = "cd /home/yiang/Work/neican",          		 desc = "AI 内参目录" },
+    { on = [ ".", "n", "e", "o"  ], run = "cd /home/yiang/Work/neican",          		 desc = "AI 内参目录" },
+
     { on = [ ".", "t", "r"           ], run = "cd ~/Work/transfer",      	desc = "Goto ~/Work/transfer" },
     { on = [ ".", "t", "e"           ], run = "cd ~/Books/teacher-files",   desc = "Goto ~/Work/transfer" },
     { on = [ ".", "t", "<Enter>"     ], run = "cd ~/Work/test",          	desc = "Goto ~/Work/test"    },
     { on = [ ".", "h", "t" ], run = "cd /var/www/html",        				desc = "Goto /var/www/html"  },
 
     { on = [ ".", "." ], run = ["hidden toggle", "arrow -99999999"], 		desc = "Toggle the visibility of hidden files" },
+
+
+    { on = [ ".", "d", "f", "t" ], run = "cd ~/Work/react-todo", desc = "Goto ~/react-todo" },
+    { on = [ ".", "d", "f", "k" ], run = "cd ~/Work/knowledge", desc = "Goto ~/react-todo" },
+    { on = [ ".", "d", "f", "a" ], run = "cd ~/Work/audio-parse", desc = "Goto ~/react-todo" },
+
+    { on = [ ".", "d", "b", "t" ], run = "cd /var/www/html/todo-back/dev", desc = "Goto ~/react-todo backend" },
+    { on = [ ".", "d", "b", "k" ], run = "cd /var/www/html/knowledge-back/dev", desc = "Goto ~/react-todo backend" },
+    # { on = [ ".", "d", "t", "b"  ], run = "cd ~/Documents",     desc = "Goto ~/Documents" },
 
 	# 下面几个是不用的规则，加上是防止yazi自动跳过字符
 	# 如果只有 .html, 输入.h就会自动跳转了, 这里加上.htmv 防止跳过字符
