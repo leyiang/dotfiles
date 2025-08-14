@@ -10,3 +10,4 @@ more+=("/home/yiang/Work/chrome/depot_tools")
 more=$(IFS=: ; echo "${more[*]}")
 
 export PATH=$more:$PATH
+. "$HOME/.cargo/env"

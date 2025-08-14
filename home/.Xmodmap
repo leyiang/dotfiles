@@ -10,3 +10,13 @@ keycode 108 = semicolon colon semicolon colon
 keycode 47 = Control_L
 add control = Control_L
 
+! 把F1设置成F18
+! F1 => 设置成在两个屏幕间切换
+! 改成其它键Chrome不认，必须是Chrome可以识别
+! 且用的不多的按键
+keycode 67 = F18 F18 F18
+
+! 要让chrome识别到xmodmap, 执行这个
+! https://askubuntu.com/questions/293560/mapped-keys-do-not-work-in-some-applications/294418#294418
+! setxkbmap -option lv3:rwin_switch
+! xmodmap ~/.Xmodmap

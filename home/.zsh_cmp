@@ -55,3 +55,14 @@ _o() {
 
 # 将补全函数与命令关联
 compdef _o o
+
+
+
+_dev() {
+  local -a options=(
+  	'todo' 'transfer' 'ask' 'card' 'clear' 'tab_manager' 'cvim' 'pdfjs'
+  )
+  _describe -t commands "dev subcommands" options
+}
+
+compdef _dev dev

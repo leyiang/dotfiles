@@ -21,7 +21,7 @@ source ~/.zshrc_extra
 source ~/.zsh_cd_alias
 source ~/.cargo/env
 source ~/.zsh_cmp
-source ~/my_bash_lib
+# source ~/my_bash_lib
 # eval "$(fzf --zsh)"
 
 function r() {
@@ -150,3 +150,33 @@ t() {
         tmux ls | column -t -o '  '
     fi
 }
+
+mm() {
+  if [[ -f Makefile ]]; then
+	  nvim Makefile
+  else
+    # 如果Makefile不存在，则创建一个模板
+    cat << EOF > Makefile
+run:
+	echo "Run Makefile"
+EOF
+	nvim Makefile
+  fi
+}
+
+export XDG_CONFIG_HOME="$HOME/.config"
+
+
+function androidrun(){
+	adb shell am start -n $1/$1.MainActivity
+}
+
+alias phone="/home/yiang/apps/scrcpy/connect"
+alias p="python"
+
+export PATH="/home/yiang/Work/build-chrome/depot_tools:$PATH"
+
+# cuda 12 暂时先关掉
+# export PATH="/usr/local/cuda-12.6/bin:$PATH"
+
+source ~/.zshkey

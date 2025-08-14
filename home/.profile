@@ -53,3 +53,5 @@ export GDK_DPI_SCALE=0.5
 
 # turn off auto black screen
 xset s off -dpms
+. "$HOME/.cargo/env"
+. "/home/yiang/.deno/env"

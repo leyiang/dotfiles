@@ -29,3 +29,6 @@
 
 "vol half-down"
 	alt + XF86AudioLowerVolume
+
+"/home/yiang/Work/quickphrase/run"
+	Mod4 + l
