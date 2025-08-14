@@ -1,39 +1,166 @@
 #!/usr/bin/env python3
 
-# This script aims to remove all the links
-# After use this script, use sync to create all the links
+# 安全清理脚本 - 仅删除指向本项目的符号链接
+# 使用后运行 sync 重新创建所有链接
 
 import os
 import sys
 
-files_to_remove = [
-    "~/.config/i3",
-    "~/.config/alacritty",
-    "~/.config/zathura",
-    "~/.config/nvim",
-    "~/.Xresources",
-    "~/.gitconfig",
-    "~/.profile",
-    "~/.zshenv",
-    "~/.zshrc",
-    "~/.zshrc_extra",
-    "~/.zshrc_third_party",
-    "~/.imwheelrc",
-    "~/.dircolors",
-]
+# 获取当前脚本目录路径
+script_directory = os.path.dirname(os.path.abspath(__file__))
 
-# Print the list of files to remove
-print("Files to be removed:")
+# 验证脚本运行环境 - 确保在dotfiles项目目录中运行
+if not (os.path.exists(os.path.join(script_directory, 'sync')) and 
+        os.path.exists(os.path.join(script_directory, 'home'))):
+    print("❌ 错误: 此脚本必须在dotfiles项目根目录中运行")
+    print("   请确保当前目录包含 'sync' 脚本和 'home' 目录")
+    sys.exit(1)
+
+# home 文件映射 (与 sync 脚本保持同步)
+home_mappings = {
+    'zshrc': '.zshrc',
+    'gitconfig': '.gitconfig', 
+    'profile': '.profile',
+    'Xmodmap': '.Xmodmap',
+    'xbindkeysrc': '.xbindkeysrc',
+    'zsh_cd_alias': '.zsh_cd_alias',
+    'zsh_cmp': '.zsh_cmp',
+    'zshenv': '.zshenv',
+    'dircolors': '.dircolors',
+    'imwheelrc': '.imwheelrc',
+    'Xresources': '.Xresources',
+    'zshrc_extra': '.zshrc_extra',
+    'zshrc_third_party': '.zshrc_third_party',
+}
+
+# config 目录映射
+config_dirs = ['i3', 'alacritty', 'zathura', 'nvim', 'yazi', 'ranger', 'joshuto']
+
+def check_symlink_safety(file_path):
+    """检查符号链接是否安全删除 - 只删除指向本dotfiles项目的链接"""
+    expanded_path = os.path.expanduser(file_path)
+    
+    if not os.path.exists(expanded_path):
+        return "不存在", False
+    
+    if not os.path.islink(expanded_path):
+        return "不是符号链接(可能是普通文件)", False
+    
+    try:
+        # 获取符号链接的目标路径
+        target = os.readlink(expanded_path)
+        
+        # 获取目标的绝对路径
+        if os.path.isabs(target):
+            abs_target = target
+        else:
+            # 相对路径需要相对于符号链接所在目录计算
+            link_dir = os.path.dirname(expanded_path)
+            abs_target = os.path.abspath(os.path.join(link_dir, target))
+        
+        # 规范化路径（解析 .. 和 . 等）
+        abs_target = os.path.normpath(abs_target)
+        project_dir = os.path.normpath(script_directory)
+        
+        # 检查目标是否在本项目目录内
+        if abs_target.startswith(project_dir + os.sep) or abs_target == project_dir:
+            return f"安全 → {target}", True
+        else:
+            return f"指向外部项目 → {target}", False
+            
+    except OSError as e:
+        return f"读取链接失败: {e}", False
+    except Exception as e:
+        return f"路径解析失败: {e}", False
+
+def generate_removal_list():
+    """动态生成需要删除的文件列表"""
+    files_to_check = []
+    
+    # 添加 home 目录文件
+    for target_name in home_mappings.values():
+        files_to_check.append(f"~/{target_name}")
+    
+    # 添加 config 目录
+    for config_name in config_dirs:
+        files_to_check.append(f"~/.config/{config_name}")
+    
+    return files_to_check
+
+# 生成文件列表
+files_to_remove = generate_removal_list()
+
+# 分析每个文件的状态
+print("🔍 符号链接安全检查:")
+print("=" * 60)
+
+safe_files = []
+unsafe_files = []
+
 for file_path in files_to_remove:
-    print(file_path)
+    status, is_safe = check_symlink_safety(file_path)
+    
+    if is_safe:
+        safe_files.append(file_path)
+        print(f"✅ {file_path:<25} {status}")
+    else:
+        unsafe_files.append((file_path, status))
+        print(f"❌ {file_path:<25} {status}")
 
-# Ask user if they want to continue with the deletion
-print('') # gap line
-user_choice = input("Do you want to proceed with the deletion? (y/N): ")
+print("=" * 60)
+print(f"✅ 可安全删除: {len(safe_files)} 个文件")
+print(f"❌ 跳过处理: {len(unsafe_files)} 个文件")
+
+if not safe_files:
+    print("\n没有需要删除的符号链接。")
+    sys.exit(0)
+
+# 询问用户确认
+print(f"\n将删除 {len(safe_files)} 个指向dotfiles项目的符号链接。")
+user_choice = input("确认删除? (y/N): ")
 
 if user_choice.lower() == "y":
-    for file_path in files_to_remove:
-        os.remove( os.path.expanduser(file_path) )
-        print(f"Deleted: {file_path}")
+    print("\n🗑️  开始删除...")
+    
+    success_count = 0
+    failed_deletions = []
+    
+    for file_path in safe_files:
+        try:
+            expanded_path = os.path.expanduser(file_path)
+            os.remove(expanded_path)
+            print(f"✅ 已删除: {file_path}")
+            success_count += 1
+        except PermissionError:
+            error_msg = f"权限不足，无法删除: {file_path}"
+            print(f"❌ {error_msg}")
+            failed_deletions.append((file_path, "权限不足"))
+        except FileNotFoundError:
+            error_msg = f"文件不存在（可能已被删除）: {file_path}"
+            print(f"⚠️  {error_msg}")
+        except OSError as e:
+            error_msg = f"系统错误: {file_path} - {e}"
+            print(f"❌ {error_msg}")
+            failed_deletions.append((file_path, str(e)))
+        except Exception as e:
+            error_msg = f"未知错误: {file_path} - {e}"
+            print(f"❌ {error_msg}")
+            failed_deletions.append((file_path, str(e)))
+    
+    # 结果总结
+    print("\n" + "=" * 60)
+    print(f"✅ 成功删除: {success_count} 个文件")
+    
+    if failed_deletions:
+        print(f"❌ 删除失败: {len(failed_deletions)} 个文件")
+        print("\n失败详情:")
+        for file_path, reason in failed_deletions:
+            print(f"  • {file_path}: {reason}")
+        print(f"\n提示: 对于权限问题，可以尝试使用 sudo 运行此脚本")
+    
+    if success_count > 0:
+        print(f"\n🔄 现在可以运行 'python3 sync' 重新创建链接。")
+    else:
+        print(f"\n⚠️  没有文件被删除，可能不需要运行 sync。")
 else:
-    print("Deletion canceled.")
+    print("取消删除操作。")

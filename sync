@@ -3,44 +3,80 @@
 import os
 import shutil
 
-# Get the directory path of the current script file
+# 获取当前脚本文件的目录路径
 script_directory = os.path.dirname(os.path.abspath(__file__))
 
-# Specify the source and destination paths
+# 指定源目录和目标目录路径
 source_folder = os.path.join(script_directory, 'config')
 destination_folder = os.path.join(script_directory, '.compiled')
 
-# Remove '.compiled' folder if exists 
+# 如果 '.compiled' 文件夹存在，则删除它
 if os.path.exists(destination_folder):
     shutil.rmtree(destination_folder)
-    print(f"Folder '{destination_folder}' removed.")
+    print(f"文件夹 '{destination_folder}' 已删除。")
 
-os.makedirs( destination_folder )
+os.makedirs(destination_folder)
 
-# Iterate over the subfolders in the source directory
+# 遍历源目录中的子文件夹
 for item in os.scandir(source_folder):
     if item.is_dir():
-        # Create the corresponding destination folder path
+        # 创建对应的目标文件夹路径
         new_dest_path = os.path.join(destination_folder, item.name, '.config')
-        os.makedirs( new_dest_path )
+        os.makedirs(new_dest_path)
 
         new_dest_path = os.path.join(destination_folder, item.name, '.config', item.name)
-        # Copy all files and subdirectories from source to destination
+        # 从源目录到目标目录创建符号链接
         os.symlink(item.path, new_dest_path)
-        #shutil.copytree(item.path, new_dest_path, True)
 
-# For home files
-os.symlink(os.path.join(script_directory, "home"), os.path.join(destination_folder, "home"))
+# 处理 home 文件映射
+home_mappings = {
+    'zshrc': '.zshrc',
+    'gitconfig': '.gitconfig',
+    'profile': '.profile',
+    'Xmodmap': '.Xmodmap',
+    'xbindkeysrc': '.xbindkeysrc',
+    'zsh_cd_alias': '.zsh_cd_alias',
+    'zsh_cmp': '.zsh_cmp',
+    'zshenv': '.zshenv',
+    'dircolors': '.dircolors',
+    'imwheelrc': '.imwheelrc',
+    'Xresources': '.Xresources',
+    'zshrc_extra': '.zshrc_extra',
+    'zshrc_third_party': '.zshrc_third_party',
+}
 
-# Install
+# 创建 home 目录
+compiled_home = os.path.join(destination_folder, "home")
+os.makedirs(compiled_home)
 
-## Get Folders under .compiled
+# 为每个 home 文件创建带正确点号前缀的符号链接（使用相对路径）
+for src_name, dst_name in home_mappings.items():
+    source_file = os.path.join(script_directory, 'home', src_name)
+    target_file = os.path.join(compiled_home, dst_name)
+    
+    if os.path.exists(source_file):
+        # 计算相对路径以避免 Stow 警告
+        rel_source = os.path.relpath(source_file, compiled_home)
+        os.symlink(rel_source, target_file)
+        print(f"已映射: {src_name} → {dst_name}")
+    else:
+        print(f"警告: 源文件不存在 {src_name}")
+
+# 安装阶段 - 使用 Stow 创建符号链接
+
+# 获取 .compiled 目录下的所有文件夹
 STOW_FOLDERS = []
 for item in os.scandir(destination_folder):
     if item.is_dir():
         STOW_FOLDERS.append(item.name)
 
+print(f"准备安装以下配置包: {STOW_FOLDERS}")
+
+# 切换到 .compiled 目录并使用 stow 安装
 os.chdir(destination_folder)
 for folder in STOW_FOLDERS:
-    os.system(f"stow -Dt ~ {folder}")
-    os.system(f"stow -t ~ {folder}")
+    print(f"正在安装配置包: {folder}")
+    os.system(f"stow -Dt ~ {folder}")  # 删除旧的符号链接
+    os.system(f"stow -t ~ {folder}")   # 创建新的符号链接
+
+print("所有配置已安装完成！")
