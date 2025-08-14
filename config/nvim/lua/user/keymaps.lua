@@ -13,6 +13,7 @@ vim.g.maplocalleader = leader
 local keymaps = {
 	-- Normal Mode --
 	n = {
+		{ "<C-a>", "ggVG" },
 		{ "<C-e>", ":e#<cr>" },
 		{ "<C-h>", "<C-w>h" },
 		{ "<C-l>", "<C-w>l" },
@@ -36,10 +37,10 @@ local keymaps = {
 			"<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>",
 		},
 		{ "<leader>t", "<cmd>Telescope live_grep<cr>" },
-		{ "<leader>/", "<cmd>lua require('Comment').toggle()<CR>" },
-		{ "<leader>i", ":Pimg<cr>" },
+		-- { "<leader>/", "gcc" },
+		-- { "<leader>i", ":Pimg<cr>" },
 		-- { "<leader>e", ":NvimTreeToggle<cr>" },
-		{ "<leader>e", ":Yazi<cr>" },
+		{ "<A-s>", ":Yazi<cr>" },
 		{ "<C-up>", "<cmd>Yazi toggle<cr>" },
 		{ "<leader>q<CR>", ":qa! <CR>" },
 		{ "<leader>w<CR>", ":w <CR>" },
@@ -51,12 +52,28 @@ local keymaps = {
 		{ "<leader>ng", "<cmd>Neogen<CR>" },
 		{ "<leader>al", ":!alacritty& <CR>" },
 		{ "<leader>pf", "<cmd>Format<CR>" },
+		-- { "<leader>a", "<cmd>Insert<CR>" },
+		-- { "<leader>i", "vi{<Esc>yypf:f\"vi\"\"*p" },
+		{ "<leader>'", "''" },
+		{ "<leader>v", "V" },
+		-- { "V", "v" },
+		--
+		{ "<leader>4", "$" },
+		{ "<leader>g", "G" },
+		{ "<leader>5", "%" },
+		{ "ge", "G" },
 	},
 	i = {
 		{ "<F3>", '<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>' },
 		{ "<C-a>", "<Esc><Esc>" },
 	},
 	v = {
+		{ "<leader>g", "G" },
+		{ "ge", "G" },
+		{ "<leader>v", "V" },
+		{ "<leader>4", "$" },
+		{ "<leader>5", "%" },
+		-- { "V", "v" },
 		{ "<", "<gv" },
 		{ ">", ">gv" },
 		{ "<leader>a", ":w !xclip -i -sel c<CR><CR>" },
@@ -67,7 +84,8 @@ local keymaps = {
 
 		{ "<A-j>", ":m .+2<cr>==gv" },
 		{ "<A-k>", ":m .-2<cr>==gv" },
-		-- { "p", '"_dP' },
+		{ "p", 'P' },
+		{ "P", 'p' },
 
 		{ "<leader>q<CR>", ":qa! <CR>" },
 		{ "<leader>w<CR>", ":<C-u>w <CR>" },
@@ -86,9 +104,28 @@ for mode, mapList in pairs(keymaps) do
 	end
 end
 
+-- Custom function binding for <leader>i
+vim.keymap.set('n', '<leader>i', function()
+	local filename = vim.fn.expand('%:p')
+	if filename == '/home/yiang/Work/quickphrase/chrome_urls.json' then
+		-- Duplicate current line for chrome_urls.json without overwriting clipboard
+		vim.cmd('normal! "ayy"ap')
+		-- Navigate to second string and replace with clipboard content  
+		vim.cmd('normal! 0f,f"vi"')
+		vim.cmd('normal! "*p')
+	else
+		-- Default behavior for other files
+		vim.cmd('normal! vi{')
+		vim.cmd('normal! y')
+		vim.cmd('normal! yypf:f"vi""*p')
+	end
+end, opts)
+
 vim.api.nvim_set_keymap("v", "H", "<Nop>", { noremap = true })
 vim.api.nvim_set_keymap("v", "L", "<Nop>", { noremap = true })
 vim.api.nvim_set_keymap("n", "J", "<Nop>", { noremap = true })
 vim.api.nvim_set_keymap("v", "J", "<Nop>", { noremap = true })
 
 vim.api.nvim_set_keymap("v", "<leader>t", ":Tabular /", { noremap = true })
+
+vim.api.nvim_set_keymap("n", "<leader>k", ":lua vim.diagnostic.open_float(nil, {focus=false})<CR>", { noremap = true })
