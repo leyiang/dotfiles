@@ -33,3 +33,12 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 		vim.fn.jobstart("fcitx5 -r")
 	end,
 })
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+	group = "AutoSaveToBackup",
+	pattern = "/home/yiang/Work/tamper-scripts_new/src/*",
+	callback = function()
+		-- Run the command
+		vim.fn.jobstart("cd /home/yiang/Work/tamper-scripts_new && ./build")
+	end,
+})

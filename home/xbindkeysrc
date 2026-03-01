@@ -6,6 +6,18 @@
 # "xdotool keyup super && xdotool key ctrl+shift+Tab"
 #     Super+i
 
+# Meta+o to Ctrl+Tab
+# "xdotool keyup super && xdotool key ctrl+Tab"
+"/home/yiang/Work/chrome-plugins/lynk/native-app/send_to_chrome.py next_tab"
+    Mod4+o
+
+# Meta+i to Ctrl+Shift+Tab
+"/home/yiang/Work/chrome-plugins/lynk/native-app/send_to_chrome.py prev_tab"
+    Mod4+i
+
+
+# Run "o bind" to refresh
+
 "vol prev"
     alt + shift + Left
 
@@ -30,5 +42,26 @@
 "vol half-down"
 	alt + XF86AudioLowerVolume
 
-"/home/yiang/Work/quickphrase/run"
+"/home/yiang/Work/launchbar/launchbar.py"
+	Mod4 + a
+
+"/home/yiang/Work/launchbar/launchbar.py"
 	Mod4 + l
+
+"smartlazygit"
+	Mod4 + bracketleft
+
+"/home/yiang/Work/ws-changer/wsrofi"
+	Mod4 + n
+
+"/home/yiang/Work/ws-changer/wsrofi"
+	Mod4 + w
+
+"capt"
+	Print
+
+"capt_card"
+	Shift + Print
+
+"/home/yiang/Work/clip-tui/run-floating.sh"
+    Control + Shift + v

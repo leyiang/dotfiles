@@ -13,9 +13,14 @@ mods = "Shift"
 [[keyboard.bindings]]
 key = "Return"
 mods = "Alt"
-command = "alacritty"
+command = { program = "smartterminal", args = ["--ssh"] }
 
 [[keyboard.bindings]]
 key = "Return"
 mods = "Shift"
 chars = "\u000A"
+
+
+[[keyboard.bindings]]
+key = "Back"
+chars = "\u007f"

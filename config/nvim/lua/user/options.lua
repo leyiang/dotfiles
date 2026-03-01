@@ -30,6 +30,9 @@ local options = {
 	swapfile = false
 }
 
+-- 禁用自动插入注释符号
+vim.cmd("autocmd BufEnter * set formatoptions-=cro")
+
 for k, v in pairs(options) do
 	vim.opt[k] = v
 end

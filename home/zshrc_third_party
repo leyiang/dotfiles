@@ -2,25 +2,49 @@
 # 存放第三方工具的zsh配置
 
 # fnm config
-export PATH="~/.local/share/fnm/":$PATH
-export PATH="/run/user/1000/fnm_multishells/1761670_1755145922862/bin":$PATH
-export FNM_MULTISHELL_PATH="/run/user/1000/fnm_multishells/1761670_1755145922862"
-export FNM_VERSION_FILE_STRATEGY="local"
-export FNM_DIR="/home/yiang/.local/share/fnm"
-export FNM_LOGLEVEL="info"
-export FNM_NODE_DIST_MIRROR="https://nodejs.org/dist"
-export FNM_COREPACK_ENABLED="false"
-export FNM_RESOLVE_ENGINES="true"
-export FNM_ARCH="x64"
-autoload -U add-zsh-hook
-_fnm_autoload_hook () {
-    if [[ -f .node-version || -f .nvmrc || -f package.json ]]; then
-    fnm use --silent-if-unchanged
-fi
+export PATH="/home/yiang/.local/share/fnm/":$PATH
 
-}
 
-add-zsh-hook chpwd _fnm_autoload_hook \
-    && _fnm_autoload_hook
+eval "$(/home/yiang/.local/share/fnm/fnm env --use-on-cd)"
 
-rehash
+# export PATH="/run/user/1000/fnm_multishells/1761670_1755145922862/bin":$PATH
+# export FNM_MULTISHELL_PATH="/run/user/1000/fnm_multishells/1761670_1755145922862"
+# export FNM_VERSION_FILE_STRATEGY="local"
+# export FNM_DIR="/home/yiang/.local/share/fnm"
+# export FNM_LOGLEVEL="info"
+# export FNM_NODE_DIST_MIRROR="https://nodejs.org/dist"
+# export FNM_COREPACK_ENABLED="false"
+# export FNM_RESOLVE_ENGINES="true"
+# export FNM_ARCH="x64"
+# autoload -U add-zsh-hook
+# _fnm_autoload_hook () {
+#     if [[ -f .node-version || -f .nvmrc || -f package.json ]]; then
+#     fnm use --silent-if-unchanged
+# fi
+#
+# }
+#
+# add-zsh-hook chpwd _fnm_autoload_hook \
+#     && _fnm_autoload_hook
+#
+# rehash
+
+
+###################################
+#              PyEnv              #
+###################################
+# export PYENV_ROOT="$HOME/.pyenv"
+# [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init - bash)"
+#
+# # Restart your shell for the changes to take effect.
+#
+# # Load pyenv-virtualenv automatically by adding
+# # the following to ~/.bashrc:
+#
+# eval "$(pyenv virtualenv-init -)"
+
+###################################
+#              Conda              #
+###################################
+# source ~/miniconda3/bin/activate

@@ -5,8 +5,12 @@ sort_by="btime"
 sort_reverse=true
 
 [opener]
-play = [
+
+mpv = [
     { run = 'mpv "$@"', orphan = true, for = "unix" },
+]
+
+vlc = [
     { run = 'vlc "$@"', orphan = true, for = "unix" },
 ]
 
@@ -33,7 +37,8 @@ py = [
 ]
 
 audio = [
-    { run = 'mpv "$@"', for = "unix" },
+    { run = 'vlc "$@"', for = "unix" },
+    # { run = 'mpv "$@"', for = "unix" },
 ]
 
 chrome = [
@@ -42,17 +47,21 @@ chrome = [
 
 [open]
 prepend_rules = [
-    { name = "*.ts", use = "play" },
     # Multiple openers for a single rule
     { name = "*.html", use = [ "edit" ] },
     { name = "*.pdf", use = "pdf" },
     { name = "*.epub", use = "epub" },
     { name = "*.py", use = "py" },
-    { name = "*.m4a", use = "audio" },
-    { name = "*.svg", use = "chrome" },
+    { name = "*.srt", use = "edit" },
     { mime = "text/*", use = "edit" },
-    { mime = "video/*", use = "play" },
+
+    { name = "*.webm", use = "vlc" },
+    { name = "*.flac", use = "audio" },
+    { mime = "video/*", use = "mpv" },
+
     { mime = "audio/*", use = "audio" },
+    { name = "*.m4a", use = "audio" },
+
     { mime = "application/postscript", use = "edit" },
 ]
 

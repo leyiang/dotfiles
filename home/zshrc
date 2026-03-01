@@ -6,6 +6,9 @@ export NVIM_PLUGIN_FOLDER="~/.local/share/nvim/site/pack/packer";
 export XM3_MAC="94:DB:56:85:7C:BD"
 export PYTHONSTARTUP=~/.python_startup.py
 
+export EDITOR=nvim
+export VISUAL=nvim
+
 ZSH_THEME="robbyrussell"
 
 plugins=(
@@ -40,6 +43,8 @@ if [ -n "$TMUX" ]; then
     export TERM="tmux-256color"
 fi
 
+
+# bindkey '^R' history-incremental-search-backward
 
 # HSTR configuration - add this to ~/.zshrc
 alias hh=hstr                    # hh to be alias for hstr
@@ -133,6 +138,8 @@ alias tks="tmux kill-server"
 alias suspend="systemctl suspend"
 
 run_backend() {
+	# $1 = Name
+	# $2 = Command
 	tmux new-session -d -s "$1" "$2"
 }
 
@@ -151,8 +158,20 @@ t() {
     fi
 }
 
+tr() {
+    if [[ $# -eq 1 ]]; then
+        local sanitized=$(echo "$1" | sed 's/[ -]/_/g')
+        tmux kill-session -t "$sanitized" 2>/dev/null || true
+        tmux new-session -d -s "$sanitized" "$1"
+    else
+        echo "Usage: tr <command>"
+    fi
+}
+
 mm() {
-  if [[ -f Makefile ]]; then
+  if [[ -f devfile ]]; then
+	  nvim devfile
+  elif [[ -f Makefile ]]; then
 	  nvim Makefile
   else
     # 如果Makefile不存在，则创建一个模板
@@ -180,3 +199,44 @@ export PATH="/home/yiang/Work/build-chrome/depot_tools:$PATH"
 # export PATH="/usr/local/cuda-12.6/bin:$PATH"
 
 source ~/.zshkey
+
+
+
+###################################
+#       Edit command in vim       #
+###################################
+bindkey -v
+
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey -M viins '^V' edit-command-line
+
+
+
+function gemini() {
+	export THEMODEL="google/gemini-2.5-pro"
+
+	export ANTHROPIC_AUTH_TOKEN="$OPENROUTER_API_KEY"
+	export ANTHROPIC_BASE_URL="https://openrouter.ai/api"
+	export ANTHROPIC_API_KEY="" # Important: Must be explicitly empty
+
+	export ANTHROPIC_DEFAULT_SONNET_MODEL="$THEMODEL"
+	export ANTHROPIC_MODEL="$THEMODEL"
+
+    ANTHROPIC_BASE_URL="https://openrouter.ai/api" claude "$@"
+}
+
+alias cmt='gemini /git-commit'
+
+# pnpm
+export PNPM_HOME="/home/yiang/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+ck() {
+	git add .
+	git commit -am "checkpoint $(date +%Y-%m-%d\ %H:%M)"
+}

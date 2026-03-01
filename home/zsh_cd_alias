@@ -32,16 +32,20 @@ alias .v="cd ~/Videos"
 
 
 alias m="my_make"
-alias me='make edit'
-alias mt="make allTest"
-alias mtc="make currentTest"
+alias me='my_make edit'
+alias mt="my_make currentTest"
+alias mta="my_make allTest"
+alias mi="my_make install"
+
+alias db="docker compose build"
+alias du="docker compose up -d"
 
 alias v="code"
-alias mi="make install"
 alias n="nvim"
 alias ag="sgpt"
 alias copy="tr -d '\n' | xclip -selection clipboard"
 alias lg="lazygit"
+alias lss="lazysql -config /home/yiang/Work/lazysql/test-config.toml"
 alias nf="nvimf"
 alias l="ls -lSh"
 
@@ -55,3 +59,16 @@ alias pdb="php artisan migrate:fresh && php artisan db:seed"
 alias sr="systemctl restart"
 alias sra="systemctl restart apache2"
 alias rex=". reset_screen"
+
+alias si="/home/yiang/source/sioyek/build/sioyek"
+alias pdf="/home/yiang/source/sioyek/build/sioyek"
+
+
+alias oc="opencode"
+alias os="/home/yiang/apps/sshs -e"
+
+alias ld="/home/yiang/apps/lazydocker"
+
+alias cc="codex"
+alias or="docker compose down && docker compose up -d"
+
